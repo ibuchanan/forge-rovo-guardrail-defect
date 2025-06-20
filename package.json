@@ -1,0 +1,29 @@
+{
+  "name": "forge-rovo-guardrail-defect",
+  "version": "0.0.0",
+  "description": "Use the Defect Guardrail Agent to assess defect quality of defect reports",
+  "main": "index.js",
+  "private": true,
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@biomejs/biome": "2",
+    "@types/node": "22",
+    "promptfoo": "^0.115",
+    "typescript": "5",
+    "vitest": "3"
+  },
+  "scripts": {
+    "check": "biome check --write",
+    "format": "biome format --write",
+    "lint": "biome lint",
+    "build": "tsc",
+    "clean": "rm -rf ./dist",
+    "changelog": "git cliff",
+    "eval": "promptfoo eval",
+    "view": "promptfoo view",
+    "test": "vitest"
+  },
+  "engines": {
+    "node": "22.15"
+  }
+}

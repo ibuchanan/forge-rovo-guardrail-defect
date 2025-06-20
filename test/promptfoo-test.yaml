@@ -1,0 +1,54 @@
+- vars:
+    agent_instructions: file://prompts/agent-instructions.md
+    agent_context: file://test/data/issue-1.md
+    user_prompt: Assess this defect report
+  assert:
+    - type: contains-json
+      value:
+        type: object
+        required:
+          - name
+          - status
+          - message
+          - ai
+          - type
+        properties:
+          name:
+            type: string
+          status:
+            type: string
+            enum:
+              - failed
+          message:
+            type: string
+          ai:
+            type: string
+          type:
+            type: string
+- vars:
+    agent_instructions: file://prompts/agent-instructions.md
+    agent_context: file://test/data/issue-2.md
+    user_prompt: Assess this defect report
+  assert:
+    - type: contains-json
+      value:
+        type: object
+        required:
+          - name
+          - status
+          - message
+          - ai
+          - type
+        properties:
+          name:
+            type: string
+          status:
+            type: string
+            enum:
+              - passed
+          message:
+            type: string
+          ai:
+            type: string
+          type:
+            type: string

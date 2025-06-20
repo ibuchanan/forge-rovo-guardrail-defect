@@ -1,0 +1,52 @@
+app:
+  id: ari:cloud:ecosystem::app/364b791c-7ca6-4a31-a2a7-130a9c3ddfe8
+  runtime:
+    architecture: arm64
+    memoryMB: 256
+    name: nodejs22.x
+modules:
+  rovo:agent:
+    - key: forge-rovo-guardrail-defect
+      name: Defect Guardrail Agent
+      description: Assess the quality of defect reports
+      actions:
+        - assessment-logger
+      conversationStarters:
+        - Assess the quality of this defect
+      prompt: resource:agent-prompts;agent-instructions.md
+  action:
+    - key: assessment-logger
+      name: Log an assessment result
+      description: |
+        When the agent performs assessment,
+        this action logs the result to the Forge logs.
+      actionVerb: GET
+      function: assessmentLogger
+      inputs:
+        assessment:
+          title: Assessment
+          description: |
+            "The assessment that the has been performed on an issue"
+          required: true
+          type: string
+  trigger:
+    - key: trigger-lifecycle
+      events:
+        - avi:forge:installed:app
+        - avi:forge:upgraded:app
+      function: lifecycle-handler
+  webtrigger:
+    - key: dev-trigger
+      function: trigger
+      response:
+        type: dynamic
+  function:
+    - key: assessmentLogger
+      handler: index.assessmentLogger
+    - key: lifecycle-handler
+      handler: index.lifecycle
+    - key: trigger
+      handler: index.trigger
+resources:
+  - key: agent-prompts
+    path: prompts
