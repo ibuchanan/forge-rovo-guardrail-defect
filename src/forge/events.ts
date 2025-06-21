@@ -2,7 +2,7 @@ export interface UniquelyIdentifiedObject {
   id: string;
 }
 
-export interface Enabled {
+interface Enabled {
   enabled: boolean;
 }
 
@@ -12,7 +12,7 @@ export interface EventContext {
   userAccess?: Enabled;
 }
 
-export interface App extends UniquelyIdentifiedObject {
+interface App extends UniquelyIdentifiedObject {
   id: string;
   version: string;
   name?: string;

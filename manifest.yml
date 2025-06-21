@@ -10,25 +10,40 @@ modules:
       name: Defect Guardrail Agent
       description: Assess the quality of defect reports
       actions:
-        - assessment-logger
+        - log-assessment
+        - fetch-content
       conversationStarters:
         - Assess the quality of this defect
       prompt: resource:agent-prompts;agent-instructions.md
   action:
-    - key: assessment-logger
+    - key: log-assessment
       name: Log an assessment result
-      description: |
+      description: >
         When the agent performs assessment,
         this action logs the result to the Forge logs.
       actionVerb: GET
-      function: assessmentLogger
+      function: logAssessment
       inputs:
         assessment:
           title: Assessment
-          description: |
-            "The assessment that the has been performed on an issue"
+          description: >
+            The assessment that the has been performed on an issue
           required: true
           type: string
+    - key: fetch-content
+      name: Fetch content from issue
+      description: >
+        For a given issue key,
+        extract summary and description
+        as content
+      actionVerb: GET
+      function: fetchContentFromIssue
+      inputs:
+        issue:
+          title: Issue Key
+          type: string
+          description: issue key to extract
+          required: true
   trigger:
     - key: trigger-lifecycle
       events:
@@ -41,12 +56,17 @@ modules:
       response:
         type: dynamic
   function:
-    - key: assessmentLogger
-      handler: index.assessmentLogger
+    - key: logAssessment
+      handler: index.logAssessment
     - key: lifecycle-handler
       handler: index.lifecycle
     - key: trigger
       handler: index.trigger
+    - key: fetchContentFromIssue
+      handler: index.fetchContentFromIssue
 resources:
   - key: agent-prompts
     path: prompts
+permissions:
+  scopes:
+    - read:jira-work

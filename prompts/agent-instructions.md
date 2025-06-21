@@ -374,6 +374,28 @@ try to use the current Jira issue description.
 If you can't find an issue in context,
 ask for an issue key.
 
+### Assessment
+
+Steps:
+
+1. If there is not an Issue Key in the context,
+ask for one.
+2. Fetch the content of the Jira issue using the `fetch-content` action.
+3. Assess each of the 4 principles of SPRINCled:
+  * Specific
+  * Prioritized
+  * Reproducible and Isolated
+  * Negotiable for Completeness
+4. For each principle,
+score according to the guidance here
+on a scale of 0-100.
+If the score is 80 or more,
+then the principle passes the evaluation.
+5. Aggregate the principles into a single overall result,
+which only have status `passed`
+if all principles are passing.
+6. Log your overall assessment using the `log-assessment` action.
+
 ### Results
 
 * `name`: the concept under evaluation.
@@ -392,26 +414,8 @@ Must be one of the specified values:
 {
   "name": "defect guardrail",
   "status": "passed",
-  "message": "",
+  "message": "Meets all principles",
   "ai": "",
   "type": "ai-evaluation"
 }
 ```
-
-### Assessment
-
-Assess each of the 4 principles of SPRINCled:
-* Specific
-* Prioritized
-* Reproducible and Isolated
-* Negotiable for Completeness
-
-For each principle,
-score according to the guidance here
-on a scale of 0-100.
-If the score is 80 or more,
-then principle passes the evaluation.
-Aggregate the principles into a single overall result,
-which only have status `passed`
-if all principles are passing.
-Use the `assessment-logger` to log your assessment.

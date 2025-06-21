@@ -1,73 +1,7 @@
-import type { CommonEvent, EventContext } from "./events";
+import type { LogAssessmentPayload } from "./actionpayload";
 
-interface RovoProductDetail {
-  url: string;
-  resourceType: string;
-}
-
-/*
-"payload": {
-  "input1ToYourAction": 1241,
-  "input2ToYourAction": 12412,
-  "context": {
-    "cloudId": "7607d59e-650b-4c16-adcf-c19d17c915ac",
-    "moduleKey": "sum-2-numbers-new-action",
-    "jira": {
-      "url": "https://mysite.atlassian.com/browse/FAA-1",
-      "resourceType": "issue",
-      "issueKey": 1,
-      "issueId": 123,
-      "issueType": "story",
-      "issueTypeId": 1234,
-      "projectKey": "FAA",
-      "projectId": 5678
-    }
-  }
-}
-*/
-export interface JiraIssueDetail extends RovoProductDetail {
-  issueKey: string;
-  issueId: string;
-  issueType: string;
-  issueTypeId: number;
-  projectKey: string;
-  projectId: number;
-}
-
-/*
-"payload": {
-  "input1ToYourAction": 1241,
-  "input2ToYourAction": 12412,
-  "context": {
-    "cloudId": "7607d59e-650b-4c16-adcf-c19d17c915ac",
-    "moduleKey": "sum-2-numbers-new-acion",
-    "confluence": {
-      "url": "https://mysite.atlassian.com/wiki/spaces/~65536301eb7512314748ebb489aba9d526b0f8/blog/2024/06/27/44662787/Holiday+in+Japan",
-      "resourceType": "blog",
-      "contentId": "44662787",
-      "spaceKey": "~65536301eb7512314748ebb489aba9d526b0f8",
-      "spaceId": "2064386"
-    }
-  }
-}
-*/
-export interface ConfluenceDetail extends RovoProductDetail {
-  contentId: string;
-  spaceKey: string;
-  spaceId: string;
-}
-
-export interface RovoContext extends EventContext {
-  jira?: JiraIssueDetail;
-  confluence?: ConfluenceDetail;
-}
-
-export interface RovoEvent extends CommonEvent {
-  assessment: string;
-  context: RovoContext;
-}
-
-export function assessmentLogger(e: RovoEvent) {
+export function logAssessment(e: LogAssessmentPayload) {
   const resource = e.context.jira?.issueKey || e.context.confluence?.contentId;
-  console.log(`"${resource}": "${e.assessment}"`);
+  // console.log(`assessment: ${JSON.stringify(e)}`);
+  console.log(`"${resource}": ${e.assessment}`);
 }
