@@ -1,32 +1,35 @@
 {
   "name": "forge-rovo-guardrail-defect",
   "version": "0.0.0",
-  "description": "Use the Defect Guardrail Agent to assess defect quality of defect reports",
-  "main": "index.js",
   "private": true,
+  "description": "Use the Defect Guardrail Agent to assess defect quality of defect reports",
   "license": "Apache-2.0",
+  "main": "index.ts",
+  "scripts": {
+    "actiontypes": "tsx ./scripts/actiontypes.ts && biome format --write",
+    "build": "tsc",
+    "changelog": "git cliff",
+    "check": "biome check --write",
+    "clean": "rm -rf ./dist",
+    "eval": "promptfoo eval",
+    "format": "biome format --write",
+    "lint": "biome lint",
+    "test": "vitest",
+    "view": "promptfoo view"
+  },
+  "dependencies": {
+    "@forge/api": "^5.3.0"
+  },
   "devDependencies": {
     "@biomejs/biome": "2",
     "@types/node": "22",
     "promptfoo": "^0.115",
+    "tsx": "4",
     "typescript": "5",
-    "vitest": "3"
-  },
-  "scripts": {
-    "check": "biome check --write",
-    "format": "biome format --write",
-    "lint": "biome lint",
-    "build": "tsc",
-    "clean": "rm -rf ./dist",
-    "changelog": "git cliff",
-    "eval": "promptfoo eval",
-    "view": "promptfoo view",
-    "test": "vitest"
+    "vitest": "3",
+    "yaml": "2"
   },
   "engines": {
     "node": "22.15"
-  },
-  "dependencies": {
-    "@forge/api": "^5.3.0"
   }
 }
