@@ -1,6 +1,6 @@
 import fs from "node:fs";
-import YAML from "yaml";
 import * as ts from "typescript";
+import YAML from "yaml";
 
 interface Module {
   key: string;

@@ -1,6 +1,10 @@
 import api, { route } from "@forge/api";
-import { FetchContentFromIssuePayload } from "./actionpayload";
-import { contentFields, ResultIssue, ContentFields } from "./jira/issue";
+import type { FetchContentFromIssuePayload } from "./actionpayload";
+import {
+  type ContentFields,
+  contentFields,
+  type ResultIssue,
+} from "./jira/issue";
 
 export async function fetchContentFromIssue(
   payload: FetchContentFromIssuePayload,

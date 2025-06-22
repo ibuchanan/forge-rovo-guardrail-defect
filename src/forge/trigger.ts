@@ -1,4 +1,5 @@
 import type { CommonEvent } from "./events";
+import { fetchContentFromIssue } from "../jiraIssue";
 
 export type Headers = { [key: string]: string[] };
 export type Parameters = { [key: string]: string[] };
@@ -41,8 +42,14 @@ export async function trigger(req: WebtriggerEvent): Promise<Response> {
   console.debug(
     `Context token (invocation identification) for invocation of trigger: ${req.contextToken}`,
   );
-  // TODO: wire up to the functions that would be invoked by scheduled triggers
-  const res: Response = buildResponse(req.body);
+  const content = await fetchContentFromIssue({
+    issue: "PLAT-33511",
+    context: {
+      cloudId: "",
+      moduleKey: "",
+    },
+  });
+  const res: Response = buildResponse(content);
   console.debug(`response: ${JSON.stringify(res)}`);
   return res;
 }
