@@ -32,7 +32,7 @@ or the Forge conversation in
 
 ## Contributions
 
-Contributions to the Forge Rovo Meta Prompting repo are welcome!
+Contributions to the Forge Rovo Defect Guardrail repo are welcome!
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## License
