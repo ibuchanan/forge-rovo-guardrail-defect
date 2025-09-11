@@ -1,5 +1,5 @@
-import type { CommonEvent } from "./events";
 import { fetchContentFromIssue } from "../jiraIssue";
+import type { CommonEvent } from "./events";
 
 export type Headers = { [key: string]: string[] };
 export type Parameters = { [key: string]: string[] };

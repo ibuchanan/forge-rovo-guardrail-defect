@@ -18,7 +18,8 @@
     "view": "promptfoo view"
   },
   "dependencies": {
-    "@forge/api": "^5.3.0"
+    "@forge/api": "^5.3",
+    "zod": "^3.25"
   },
   "devDependencies": {
     "@biomejs/biome": "2",
