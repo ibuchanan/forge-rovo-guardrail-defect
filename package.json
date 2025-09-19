@@ -18,7 +18,7 @@
     "view": "promptfoo view"
   },
   "dependencies": {
-    "@forge/api": "^5.3.0"
+    "@forge/api": "^6.1.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2",
@@ -30,6 +30,6 @@
     "yaml": "2"
   },
   "engines": {
-    "node": "22.15"
+    "node": "22.19"
   }
 }
