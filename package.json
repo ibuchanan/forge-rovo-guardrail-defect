@@ -18,18 +18,18 @@
     "view": "promptfoo view"
   },
   "dependencies": {
-    "@forge/api": "^6.1.1"
+    "@forge/api": "^7.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2",
     "@types/node": "22",
-    "promptfoo": "^0.115",
+    "promptfoo": "^0.120",
     "tsx": "4",
     "typescript": "5",
-    "vitest": "3",
+    "vitest": "4",
     "yaml": "2"
   },
   "engines": {
-    "node": "22.19"
+    "node": "22"
   }
 }
